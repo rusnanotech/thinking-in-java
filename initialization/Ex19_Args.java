@@ -1,4 +1,4 @@
-package exercises.initialization;
+package biz.markov.thinking.initialization;
 
 import java.util.Arrays;
 

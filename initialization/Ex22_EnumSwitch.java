@@ -1,6 +1,4 @@
-package exercises.initialization;
-
-import java.util.Arrays;
+package biz.markov.thinking.initialization;
 
 enum Ex22_Currency { ONE, TWO, THREE, FIVE, TEN, TWENTY }
 

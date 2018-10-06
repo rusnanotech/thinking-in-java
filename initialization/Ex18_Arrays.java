@@ -1,4 +1,4 @@
-package exercises.initialization;
+package biz.markov.thinking.initialization;
 
 class Ex18_Type {
     Ex18_Type(String s) {

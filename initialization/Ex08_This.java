@@ -1,4 +1,4 @@
-package exercises.initialization;
+package biz.markov.thinking.initialization;
 
 public class Ex08_This {
     void f(String s) {

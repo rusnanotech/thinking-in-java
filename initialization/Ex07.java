@@ -1,4 +1,4 @@
-package exercises.initialization;
+package biz.markov.thinking.initialization;
 
 class Ex07_Type {
     String s = "Object initialized";

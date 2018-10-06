@@ -1,4 +1,4 @@
-package exercises.initialization;
+package biz.markov.thinking.initialization;
 
 class Ex14_Str {
     static String str1 = "static string";
@@ -11,6 +11,7 @@ class Ex14_Str {
         System.out.println(str2);
     }
 }
+
 public class Ex14_StaticBlocks {
     public static void main(String args[]) {
         Ex14_Str.print();

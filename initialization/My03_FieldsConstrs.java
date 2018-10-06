@@ -1,5 +1,5 @@
 // Static objects initialization
-package exercises.initialization;
+package biz.markov.thinking.initialization;
 
 class My03_Class3 {
     static My03_Class2 j = new My03_Class2("'static' j");

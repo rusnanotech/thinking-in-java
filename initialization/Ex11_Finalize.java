@@ -1,4 +1,4 @@
-package exercises.initialization;
+package biz.markov.thinking.initialization;
 
 public class Ex11_Finalize {
     protected void finalize() {

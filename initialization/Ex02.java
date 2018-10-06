@@ -1,4 +1,4 @@
-package exercises.initialization;
+package biz.markov.thinking.initialization;
 
 class Ex02_String {
     String s = "This string is initialized at the point of definition.";
