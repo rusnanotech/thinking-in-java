@@ -1,6 +1,6 @@
 package exercises.initialization;
 
-class Ex05Dog {
+class Ex06_Dog {
     public static void bark() {
         System.out.println("Sleeping");
     }
@@ -25,19 +25,28 @@ class Ex05Dog {
     public static void bark(double x) {
         System.out.println("Howling");
     }
+    public static void bark(long x, double y) {
+        System.out.println("Barking and howling");
+    }
+    public static void bark(double x, long y) {
+        System.out.println("Howling and barking");
+    }
 }
 
 //,
-public class Ex05Overloading {
+public class Ex06_Overloading {
+
     public static void main(String args[]) {
         byte b = 1;
-        Ex05Dog.bark();
-        Ex05Dog.bark(b);
-        Ex05Dog.bark((char) b);
-        Ex05Dog.bark((short) b);
-        Ex05Dog.bark((int) b);
-        Ex05Dog.bark((long) b);
-        Ex05Dog.bark((float) b);
-        Ex05Dog.bark((double) b);
+        Ex06_Dog.bark();
+        Ex06_Dog.bark(b);
+        Ex06_Dog.bark((char) b);
+        Ex06_Dog.bark((short) b);
+        Ex06_Dog.bark((int) b);
+        Ex06_Dog.bark((long) b);
+        Ex06_Dog.bark((float) b);
+        Ex06_Dog.bark((double) b);
+        Ex06_Dog.bark((double) b, (long) b);
+        Ex06_Dog.bark((long) b, (double) b);
     }
 }

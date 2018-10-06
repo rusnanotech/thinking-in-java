@@ -2,7 +2,7 @@ package exercises.initialization;
 
 import java.util.Arrays;
 
-public class Ex19Args {
+public class Ex19_Args {
     static void f(String... args) {
         System.out.print(Arrays.toString(args));
         System.out.println();

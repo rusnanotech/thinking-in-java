@@ -1,6 +1,6 @@
 package exercises.initialization;
 
-class Ex07Type {
+class Ex07_Type {
     String s = "Object initialized";
     void status() {
         System.out.println(s);
@@ -9,7 +9,7 @@ class Ex07Type {
 
 public class Ex07 {
     public static void main(String args[]) {
-        Ex07Type obj = new Ex07Type();
+        Ex07_Type obj = new Ex07_Type();
         obj.status();
     }
 }

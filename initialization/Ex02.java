@@ -1,21 +1,21 @@
 package exercises.initialization;
 
-class Ex02String {
+class Ex02_String {
     String s = "This string is initialized at the point of definition.";
 }
 
-class Ex02MyString2 {
+class Ex02_MyString {
     String s;
-    Ex02MyString2() {
+    Ex02_MyString() {
         s = "This string is initialized by the constructor.";
     }
 }
 
 public class Ex02 {
     public static void main(String args[]) {
-        Ex02String s2 = new Ex02String();
+        Ex02_String s2 = new Ex02_String();
         System.out.println(s2.s);
-        Ex02MyString2 s3 = new Ex02MyString2();
+        Ex02_MyString s3 = new Ex02_MyString();
         System.out.println(s3.s);
     }
 }

@@ -1,17 +1,17 @@
 package exercises.initialization;
 
-class Ex04Msg {
-    Ex04Msg() {
+class Ex04_Msg {
+    Ex04_Msg() {
         System.out.println("Object created by default constructor");
     }
-    Ex04Msg(int i) {
+    Ex04_Msg(int i) {
         System.out.println("Object " + i + " created by overloaded constructor");
     }
 }
 
 public class Ex04 {
     public static void main(String args[]) {
-        new Ex04Msg();
-        new Ex04Msg(1);
+        new Ex04_Msg();
+        new Ex04_Msg(1);
     }
 }

@@ -1,6 +1,6 @@
 package exercises.initialization;
 
-class Ex14Str {
+class Ex14_Str {
     static String str1 = "static string";
     static String str2;
     static {
@@ -11,8 +11,8 @@ class Ex14Str {
         System.out.println(str2);
     }
 }
-public class Ex14StaticBlocks {
+public class Ex14_StaticBlocks {
     public static void main(String args[]) {
-        Ex14Str.print();
+        Ex14_Str.print();
     }
 }

@@ -2,10 +2,10 @@ package exercises.initialization;
 
 import java.util.Arrays;
 
-enum Ex22Currency { ONE, TWO, THREE, FIVE, TEN, TWENTY }
+enum Ex22_Currency { ONE, TWO, THREE, FIVE, TEN, TWENTY }
 
-public class Ex22EnumSwitch {
-    static String testSwitch(Ex22Currency e) {
+public class Ex22_EnumSwitch {
+    static String testSwitch(Ex22_Currency e) {
         switch (e) {
             case ONE: case TWO: case THREE:
                 return "Less than five";
@@ -17,7 +17,7 @@ public class Ex22EnumSwitch {
     }
 
     public static void main(String args[]) {
-        Ex22Currency e = Ex22Currency.FIVE;
+        Ex22_Currency e = Ex22_Currency.FIVE;
         System.out.println(testSwitch(e));
     }
 }
