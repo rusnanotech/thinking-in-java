@@ -1,3 +1,7 @@
+/****************** Exercise 14 *****************
+ * In Car.java add a service() method to Engine
+ * and call this method in main().
+ ***********************************************/
 //: reusing/Ex14_Ex14_Car.java
 // Composition with public objects.
 package biz.markov.thinking.reusing;

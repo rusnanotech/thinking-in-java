@@ -1,3 +1,7 @@
+/****************** Exercise 22 ****************
+ * Create a final class and attempt to inherit
+ * from it.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 
 final class Ex22_Final {}

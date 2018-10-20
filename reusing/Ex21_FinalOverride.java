@@ -1,3 +1,8 @@
+/****************** Exercise 21 ****************
+ * Create a class with a final method. Inherit
+ * from that class and attempt to override that
+ * method.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 
 class Ex21_Base {

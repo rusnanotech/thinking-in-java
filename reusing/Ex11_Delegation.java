@@ -1,3 +1,6 @@
+/****************** Exercise 11 *****************
+ * Modify Detergent.java so it uses delegation.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 //: reusing/Ex11_Delegation.java
 // Inheritance syntax & properties.

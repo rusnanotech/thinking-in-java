@@ -1,3 +1,8 @@
+/****************** Exercise 15 *****************
+ * Add a RectangularGlyph to PolyConstructors.java
+ * and demonstrate the problem described in this
+ * section.
+ ***********************************************/
 //: polymorphism/Ex15_PolyConstructors.java
 // Constructors and polymorphism
 // don't produce what you might expect.

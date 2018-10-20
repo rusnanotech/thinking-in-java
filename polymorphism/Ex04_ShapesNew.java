@@ -1,3 +1,8 @@
+/****************** Exercise 4 *****************
+ * Add a new type of Shape to Shapes.java and
+ * verify in main() that polymorphism works for
+ * your new type as it does in the old types.
+ ***********************************************/
 package biz.markov.thinking.polymorphism;//: polymorphism/Ex02_Shapes.java
 // Polymorphism in Java.
 

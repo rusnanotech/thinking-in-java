@@ -1,3 +1,9 @@
+/****************** Exercise 5 ****************
+ * Starting from Exercise 1, add a wheels()
+ * method in Cycle, which returns the number of
+ * wheels. Modify ride() to call wheels() and
+ * verify that polymorphism works.
+ ***********************************************/
 package biz.markov.thinking.polymorphism;
 
 import biz.markov.thinking.polymorphism.ex05cycles.*;

@@ -1,3 +1,7 @@
+/****************** Exercise 20 ****************
+ * Show that the @Override annotation solves the
+ * problem from the "final and private" section.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 
 class Ex20_Base {

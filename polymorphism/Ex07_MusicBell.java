@@ -1,3 +1,8 @@
+/****************** Exercise 7 *****************
+ * Add a new type of Instrument to Music3.java
+ * and verify that polymorphism works for your
+ * new type.
+ ***********************************************/
 //: polymorphism/music3/EEx07_Music3.java
 // An extensible program.
 package biz.markov.thinking.polymorphism;

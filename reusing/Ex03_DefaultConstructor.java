@@ -1,3 +1,9 @@
+/****************** Exercise 3 ******************
+ * Even if you don't create a constructor for
+ * Cartoon(), the compiler will synthesize a
+ * default constructor that calls the base-class
+ * constructor. Prove that assertion.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 import static net.mindview.util.Print.*;
 

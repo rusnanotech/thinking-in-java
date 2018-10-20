@@ -1,3 +1,7 @@
+/****************** Exercise 10 *****************
+ * Modify Exercise 9 so each class only has
+ * non-default constructors.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 
 class Ex10_Component1 {

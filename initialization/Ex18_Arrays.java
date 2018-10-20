@@ -1,3 +1,7 @@
+/****************** Exercise 18 *****************
+ * Create objects to attach to the array of
+ * references for Exercise 17.
+ ************************************************/
 package biz.markov.thinking.initialization;
 
 class Ex18_Type {

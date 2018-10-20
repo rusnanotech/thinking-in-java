@@ -1,3 +1,9 @@
+/****************** Exercise 23 ****************
+ * Prove that class loading takes place only
+ * once and may be caused by either the creation
+ * of the first instance of that class or by
+ * accessing a static member.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 
 class Ex23_Base {

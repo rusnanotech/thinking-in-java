@@ -1,3 +1,9 @@
+/****************** Exercise 6 *****************
+ * Change Music3.java so what() becomes the root
+ * Object method toString(). Print the Instrument
+ * objects using System.out.println() (without
+ * any casting).
+ ***********************************************/
 //: polymorphism/music3/EEx06_Music3.java
 // An extensible program.
 package biz.markov.thinking.polymorphism;

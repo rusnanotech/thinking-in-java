@@ -1,3 +1,7 @@
+/****************** Exercise 8 *****************
+ * Modify Music3.java so it randomly creates
+ * Instrument objects the way Shapes.java does.
+ ***********************************************/
 //: polymorphism/music3/EEx08_Music3.java
 // An extensible program.
 package biz.markov.thinking.polymorphism;

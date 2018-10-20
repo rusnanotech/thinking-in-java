@@ -1,3 +1,8 @@
+/****************** Exercise 2 ******************
+ * Turn the code fragments in the "Collisions"
+ * section into a program, and verify that
+ * collisions do in fact occur.
+ ***********************************************/
 package biz.markov.thinking.access;
 import net.mindview.simple.*;
 import java.util.*;

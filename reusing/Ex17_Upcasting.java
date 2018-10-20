@@ -1,3 +1,10 @@
+/****************** Exercise 17 *****************
+ * Modify Exercise 16 so Frog overrides the
+ * method definitions from the base class
+ * (provides new definitions using the same
+ * method signatures). Note what happens in
+ * main().
+ ***********************************************/
 package biz.markov.thinking.reusing;
 
 class Ex17_Amphibian {

@@ -1,3 +1,8 @@
+/****************** Exercise 2 *****************
+ * Inherit a new class from class Detergent.
+ * Override scrub() and add a new method called
+ * sterilize().
+ ***********************************************/
 package biz.markov.thinking.reusing;
 import biz.markov.thinking.reusing.lib.*;
 import static net.mindview.util.Print.*;

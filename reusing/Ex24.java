@@ -1,3 +1,9 @@
+/****************** Exercise 24 ****************
+ * In Beetle.java, inherit a specific type of
+ * beetle from class Beetle, following the same
+ * format as the existing classes. Trace and
+ * explain the output.
+ ***********************************************/
 //: reusing/Ex24.java
 // The full process of initialization.
 package biz.markov.thinking.reusing;

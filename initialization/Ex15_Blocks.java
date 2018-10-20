@@ -1,3 +1,7 @@
+/****************** Exercise 15 ****************
+ * Create a class with a String that is
+ * initialized using "instance initialization."
+ ***********************************************/
 package biz.markov.thinking.initialization;
 
 class Ex15_Str {

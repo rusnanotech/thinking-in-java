@@ -1,3 +1,8 @@
+/****************** Exercise 4 ******************
+ * Prove that base-class constructors are (a)
+ * always called and (b) called before
+ * derived-class constructors.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 
 class Ex04_BaseClass {

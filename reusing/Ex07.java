@@ -1,3 +1,9 @@
+/****************** Exercise 7 ******************
+ * Modify Exercise 5 so A and B have
+ * constructors with arguments instead of default
+ * constructors. Write a constructor for C and
+ * perform all initialization within it.
+ ***********************************************/
 package biz.markov.thinking.reusing;
 
 class Ex07_A {

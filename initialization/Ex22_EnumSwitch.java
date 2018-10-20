@@ -1,3 +1,8 @@
+/****************** Exercise 22 ****************
+ * Write a switch statement for the enum in
+ * Exercise 21. For each case, output a
+ * description of that particular currency.
+ ***********************************************/
 package biz.markov.thinking.initialization;
 
 enum Ex22_Currency { ONE, TWO, THREE, FIVE, TEN, TWENTY }

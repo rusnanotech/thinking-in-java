@@ -1,3 +1,7 @@
+/****************** Exercise 4 ****************
+ * Show that protected methods have package
+ * access but are not public.
+ ***********************************************/
 package biz.markov.thinking.access;
 import biz.markov.thinking.access.local.Ex04_Type;
 

@@ -1,3 +1,7 @@
+/****************** Exercise 2 ****************
+ * Add the @Override annotation to the shapes
+ * example.
+ ***********************************************/
 package biz.markov.thinking.polymorphism;//: polymorphism/Ex02_Shapes.java
 // Polymorphism in Java.
 import biz.markov.thinking.polymorphism.shape.Shape;

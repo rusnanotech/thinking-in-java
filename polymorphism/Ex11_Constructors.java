@@ -1,3 +1,6 @@
+/****************** Exercise 11 *****************
+ * Add class Pickle to Sandwich.java.
+ ***********************************************/
 //: polymorphism/Ex11_Constructors.java
 // Order of constructor calls.
 package biz.markov.thinking.polymorphism;

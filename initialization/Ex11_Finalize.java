@@ -1,3 +1,7 @@
+/****************** Exercise 11 ****************
+ * Modify Exercise 10 so your
+ * finalize() will always be called.
+ ***********************************************/
 package biz.markov.thinking.initialization;
 
 public class Ex11_Finalize {
