@@ -1,6 +1,6 @@
 //: access/ChocolateChip2.java
 package biz.markov.thinking.access;
-import net.mindview.thinking.access.cookie2.*;
+import biz.markov.thinking.access.local.*;
 
 public class My03_Protected {
   public static void main(String args[]) {
