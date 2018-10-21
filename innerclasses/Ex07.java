@@ -9,18 +9,12 @@ public class Ex07 {
     }
 
     class Ex07_Inner {
-        Ex07 outer;
-
-        Ex07_Inner(Ex07 outer) {
-            this.outer = outer;
-        }
-
         void access() {
             System.out.println("Initial value: " + ch);
             System.out.println("adding");
-            outer.ch += 5;
+            Ex07.this.ch += 5;
 
-            outer.encode();
+            Ex07.this.encode();
 
             System.out.println("Result: " + ch);
         }
@@ -28,7 +22,7 @@ public class Ex07 {
 
     public static void main(String[] args) {
         Ex07 outer = new Ex07();
-        Ex07_Inner inner = outer.new Ex07_Inner(outer);
+        Ex07_Inner inner = outer.new Ex07_Inner();
         inner.access();
     }
 }
