@@ -4,7 +4,7 @@
  ***********************************************/
 package biz.markov.thinking.innerclasses;
 
-public class Ex08_WithPrivateClass {
+public class Ex08_PrivateInnerClass {
     private class Ex08_Inner {
         private int i = 912;
         double x = 0.092785;
@@ -28,7 +28,7 @@ public class Ex08_WithPrivateClass {
     }
 
     public static void main(String[] args) {
-        Ex08_WithPrivateClass outer = new Ex08_WithPrivateClass();
+        Ex08_PrivateInnerClass outer = new Ex08_PrivateInnerClass();
         outer.access();
     }
 }

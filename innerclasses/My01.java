@@ -36,6 +36,9 @@ class My01_Outer {
 }
 
 public class My01 {
+    class My01_Inner {
+    }
+
     public static void main(String[] args) {
         //  Initialising non-static inner class:
         My01_Outer.My01_Inner inner1 = new My01_Outer().getInner();
