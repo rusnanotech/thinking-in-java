@@ -49,20 +49,19 @@ class DiceFactory implements ThingFactory {
 }
 
 public class Ex19_FactoryFramework {
-    public static void play(ThingFactory tf) {
+    public static void play(final ThingFactory tf, final int n) {
         Thing t = tf.getThing();
-        t.toss();
+        for (int i = 0; i < n; i++)
+            t.toss();
     }
 
     public static void main(String[] args) {
         System.out.println("\nTossing coin:");
         CoinFactory cf = new CoinFactory();
-        for (int i = 0; i < 10; i++)
-            play(cf);
+        play(cf, 10);
 
         System.out.println("\nTossing dice:");
         DiceFactory df = new DiceFactory();
-        for (int i = 0; i < 10; i++)
-            play(df);
+        play(df, 10);
     }
 }
