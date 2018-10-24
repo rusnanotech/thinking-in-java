@@ -29,19 +29,15 @@ class TricycleFactory implements CycleFactory {
     }
 }
 
-class Cycles {
-    void rideCycle(CycleFactory cf) {
+public class Ex18_FactoryMethodPattern {
+    static void rideCycle(CycleFactory cf) {
         Cycle c = cf.getCycle();
         c.ride();
     }
-}
 
-public class Ex18_FactoryMethodPattern {
     public static void main(String[] args) {
-        Cycles c = new Cycles();
-
-        c.rideCycle(new UnicycleFactory());
-        c.rideCycle(new BicycleFactory());
-        c.rideCycle(new TricycleFactory());
+        rideCycle(new UnicycleFactory());
+        rideCycle(new BicycleFactory());
+        rideCycle(new TricycleFactory());
     }
 }
