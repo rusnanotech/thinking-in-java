@@ -6,7 +6,9 @@ class My03_A {
     protected int k = 3;
     private int l = 4;
 
-    void f() {}
+    void f() {
+        System.out.println(i + " " + j + " " + k + " " + l);
+    }
 }
 
 class My03_B extends My03_A {
@@ -28,5 +30,11 @@ public class My03_FieldsInheritance {
         System.out.println(((My03_A)c).j);
         c.f();
         ((My03_A)c).f();
+        System.out.println();
+
+        My03_B b  = new My03_B();
+
+        b.f();
+        ((My03_A)b).f();
     }
 }
