@@ -2,7 +2,7 @@ package biz.markov.thinking.interfaces;
 
 class My01_Class {
     public String toString() {
-        return "My01";
+        return "My01_SubLists";
     }
 }
 
