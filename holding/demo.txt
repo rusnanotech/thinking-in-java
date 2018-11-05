@@ -1,0 +1,8 @@
+The java.util library has a reasonably complete set of container classes to solve this
+problem, the basic types of which are List, Set, Queue, and Map. These types of objects are
+also known as collection classes, but because the Java library uses the name Collection to
+refer to a particular subset of the library, I shall use the more inclusive term "container."
+Containers provide sophisticated ways to hold your objects, and you can solve a surprising
+number of problems by using these tools.
+
+Bruce Eckel. Thinking in Java Fourth Edition.
