@@ -47,17 +47,18 @@ public class Ex22_WordCounter {
 
     void count(String word) {
         Ex22_WordBox newBox = new Ex22_WordBox(word);
+
         if (!occurrences.contains(newBox))
             occurrences.add(newBox);
         else
             for (Ex22_WordBox box : occurrences)
-                if (newBox.equals(box))
+                if (newBox.equals(box)) {
                     box.incCounter();
+                    break;
+                }
     }
 
-    Set<Ex22_WordBox> getOccurrences () {
-        return occurrences;
-    }
+    Set<Ex22_WordBox> getOccurrences () { return occurrences; }
 
     public static void main(String[] args) {
         Ex22_WordCounter counter = new Ex22_WordCounter();
