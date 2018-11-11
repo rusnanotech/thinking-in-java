@@ -2,8 +2,6 @@
  * Add a finalize() method to ReferenceCounting.java
  * to verify the termination condition. (See
  * the Initialization & Cleanup chapter.)
- 116
- Thinking in Java, 4th Edition Annotated Solution Guide
  ***********************************************/
 //: polymorphism/Ex13_ReferenceCounting.java
 // Cleaning up shared member objects.
