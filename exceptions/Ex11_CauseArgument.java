@@ -1,3 +1,8 @@
+/****************** Exercise 11 ******************
+ * Repeat the previous exercise, but inside the
+ * catch clause, wrap g()'s exception in a
+ * RuntimeException.
+ ***********************************************/
 package biz.markov.thinking.exceptions;
 
 public class Ex11_CauseArgument {
