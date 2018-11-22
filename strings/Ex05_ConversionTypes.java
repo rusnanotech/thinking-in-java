@@ -7,8 +7,6 @@
  ************************************************/
 package biz.markov.thinking.strings;
 
-import java.math.BigInteger;
-
 public class Ex05_ConversionTypes {
    public static void main(String[] args) {
       Object vargs[] = { 8, 'ы', false, "ABCDE", 2.71828, 3.14159, 0xABCDE, new Object() };
