@@ -18,22 +18,13 @@ public class Ex16_JGrep {
    private Pattern pattern;
    private int group;
    
-   public Ex16_JGrep(String path, String pattern) {
-      this(path, pattern, 0);
+   public Ex16_JGrep(String pattern) {
+      this(pattern, 0);
    }
    
-   public Ex16_JGrep(String path, String regex, int flag) {
-      File f = new File(path);
+   public Ex16_JGrep(String regex, int flag) {
       group = 0;
       
-      if (f.isFile())
-         files = new File[] { f };
-      else if (f.isDirectory()) {
-         files = f.listFiles();
-         Arrays.sort(files);
-      } else
-         terminate();
-   
       if (flag > 0)
          pattern = Pattern.compile(regex, flag);
       else
@@ -49,30 +40,48 @@ public class Ex16_JGrep {
       this.group = group;
    }
    
-   public void find() {
+   public void process(String path) {
+      File f = new File(path);
+      
+      if (f.isFile())
+         files = new File[] { f };
+      else if (f.isDirectory()) {
+         files = f.listFiles();
+         Arrays.sort(files);
+      } else
+         terminate();
+   
       // Iterate through the lines of the input files:
       Matcher m = pattern.matcher("");
+      int total = 0;
       for (File file : files) {
          if (file.isDirectory())
             continue;
          
          int index = 1;
+         int count = 0;
          boolean flag = true;
          for (String line : new TextFile(file.getAbsolutePath())) {
             m.reset(line);
             while (true) {
                if (m.find()) {
+                  count++;
                   if (flag) {
-                     System.out.println(file);
+                     System.out.format("\n%s\n", file);
                      flag = false;
                   }
+                  System.out.format("%3d:%2d:   %s\n",
+                     index, m.start()+1, m.group(group) == null ? "" : m.group(group));
                } else
                   break;
-               System.out.format("%3d:%2d:   %s\n", index, m.start(), m.group(group));
             }
             index++;
          }
+         total += count;
+         if (count > 0)
+            System.out.println("-------------------\nmatches in file: " + count);
       }
+      System.out.println("\nTotal of matches: " + total);
    }
    
    public static void main(String[] args) throws Exception {
@@ -97,6 +106,6 @@ public class Ex16_JGrep {
       else if (args[2].equals("CANON_EQ"))
          flag = Pattern.CANON_EQ;
       
-      new Ex16_JGrep(args[0], args[1], flag).find();
+      new Ex16_JGrep(args[1], flag).process(args[0]);
    }
 }
