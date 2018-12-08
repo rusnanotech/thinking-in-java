@@ -7,7 +7,6 @@ package biz.markov.thinking.typeinfo;
 
 import java.lang.reflect.*;
 import java.util.*;
-
 import biz.markov.thinking.typeinfo.ex25.A;
 
 public class Ex25_Access {
