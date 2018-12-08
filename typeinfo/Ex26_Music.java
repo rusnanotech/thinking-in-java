@@ -79,10 +79,4 @@ public class Ex26_Music {
       };
       tuneAll(orchestra);
    }
-} /* Output:
-Wind.play() MIDDLE_C
-Percussion.play() MIDDLE_C
-Stringed.play() MIDDLE_C
-Brass.play() MIDDLE_C
-Woodwind.play() MIDDLE_C
-*///:~
+}
