@@ -104,6 +104,6 @@ public class My02 {
       //! ab2.set(ab1);
       //! ab2.set(ab2);
       //! ab2.set(b1);
-      ab2.set(b2); // (!)
+      ab2.set(b2); // Bridge method set(My02A a) in My02_B2 class allows polymorphism
    }
 }
