@@ -16,9 +16,9 @@ import java.util.regex.Pattern;
 public class Ex20_ClassInfo {
    private static final Pattern p = Pattern.compile("\\w+\\.");
    private static final Object[] arg0 = {}; // Dummy argument for 'invoke' method
-   private int superClassNumber = 1;
+   private static int superClassNumber = 1;
    
-   private void display(Class<?> c, Method m) throws Exception {
+   private static void display(Class<?> c, Method m) throws Exception {
       System.out.println();
       for (Object obj : (Object[]) m.invoke(c, arg0))
          System.out.println("\t" +
@@ -26,7 +26,7 @@ public class Ex20_ClassInfo {
          );
    }
    
-   public void dump(Class<?> c) {
+   public static void dump(Class<?> c) {
       for (Method m : Class.class.getMethods()) {
          try {
             if (
@@ -64,7 +64,7 @@ public class Ex20_ClassInfo {
       }
       
       try {
-         new Ex20_ClassInfo().dump(Class.forName(args[0]));
+         dump(Class.forName(args[0]));
       } catch (ClassNotFoundException e) {
          System.out.println("Class \"" + args[0] + "\" not found");
       }
