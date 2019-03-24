@@ -5,13 +5,14 @@
 package biz.markov.thinking.containers;
 
 import biz.markov.thinking.containers.lib.DemoPrinter;
-import biz.markov.thinking.containers.lib.SortedSets;
+import biz.markov.thinking.containers.lib.Sets;
 
 import java.util.*;
 
 public class Ex10_SortedSetImpDemo {
     public static <E> void test(List<E> list, SortedSet<E> set, E[] a) {
         String name = set.getClass().getSimpleName();
+        System.out.println("is set empty? " + set.isEmpty());
         set.addAll(list);
         DemoPrinter.print(set, name);
 
@@ -20,6 +21,7 @@ public class Ex10_SortedSetImpDemo {
 
         SortedSet<E> headSet = set.headSet(a[1]);
         DemoPrinter.print(headSet, "headSet(" + a[1] + ")");
+
         DemoPrinter.print(set.tailSet(a[0]), "tailSet(" + a[0] + ")");
 
         System.out.println("subSet.addAll([" + a[4] + ", " + a[5] + "])");
@@ -30,9 +32,9 @@ public class Ex10_SortedSetImpDemo {
         }
         DemoPrinter.print(subSet, "subSet(" + a[0] + ", " + a[1] + ")");
 
-        System.out.println("subSet.add(" + a[2] + ")");
+        System.out.println("subSet.add(" + null + ")");
         try {
-            subSet.add(a[2]);
+            subSet.add(null);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -44,6 +46,12 @@ public class Ex10_SortedSetImpDemo {
         } catch (Exception e) {
             System.out.println(e);
         }
+        DemoPrinter.print(set, name);
+
+        System.out.println("contains(" + a[0] + ") " + set.contains(a[0]));
+
+        System.out.format("retainAll(%s, %s, %s)\n", a[0], a[1], a[2]);
+        set.retainAll(Arrays.asList(a[0], a[1], a[2]));
         DemoPrinter.print(set, name);
 
         System.out.println();
@@ -73,7 +81,7 @@ public class Ex10_SortedSetImpDemo {
             SortedSet<Integer> set40 = new Ex10_SortedSetImp<Integer>(DESC);
             test(list, set10, params1);
             test(list, set20, params1);
-            if (!SortedSets.isEquals(set10, set20)) {
+            if (!Sets.isEquals(set10, set20)) {
                 System.out.println("sets are not equals");
                 break;
             }
@@ -81,7 +89,7 @@ public class Ex10_SortedSetImpDemo {
             System.out.println("Descending\n----------");
             test(list, set30, params2);
             test(list, set40, params2);
-            if (!SortedSets.isEquals(set30, set40)) {
+            if (!Sets.isEquals(set30, set40)) {
                 System.out.println("sets are not equals");
                 break;
             }
