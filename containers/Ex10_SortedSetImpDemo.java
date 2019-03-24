@@ -1,3 +1,7 @@
+/****************** Exercise 10 *****************
+ * Using a LinkedList as your underlying
+ * implementation, define your own SortedSet.
+ ***********************************************/
 package biz.markov.thinking.containers;
 
 import biz.markov.thinking.containers.lib.DemoPrinter;
@@ -18,7 +22,7 @@ public class Ex10_SortedSetImpDemo {
         DemoPrinter.print(headSet, "headSet(" + a[1] + ")");
         DemoPrinter.print(set.tailSet(a[0]), "tailSet(" + a[0] + ")");
 
-        System.out.println("subSet.add(" + a[4] + ", " + a[5] + ")");
+        System.out.println("subSet.addAll([" + a[4] + ", " + a[5] + "])");
         try {
             subSet.addAll(Arrays.asList(a[4], a[5]));
         } catch (Exception e) {
@@ -45,22 +49,39 @@ public class Ex10_SortedSetImpDemo {
         System.out.println();
     }
 
+    static Comparator<Integer> DESC = new Comparator<Integer>() {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o2.compareTo(o1);
+        }
+    };
+
     public static void main(String[] args) {
-        Integer[] params = {3, 6, 4, 55, 5, 100};
+        Integer[] params1 = {3, 6, 4, 55, 5, 100};
+        Integer[] params2 = {6, 3, 4, 55, 100, 5};
         for (int i = 0; i < 100; i++) {
             List<Integer> list = new ArrayList<Integer>();
             for (int k = 0; k < 10; k++) {
                 list.add((int) (Math.random() * 10));
             }
             DemoPrinter.print(list, i + " ArrayList");
-            System.out.println("----------------------------------------");
+            System.out.println("----------------------------------------------------");
 
             SortedSet<Integer> set10 = new TreeSet<Integer>();
             SortedSet<Integer> set20 = new Ex10_SortedSetImp<Integer>();
-            test(list, set10, params);
-            test(list, set20, params);
-
+            SortedSet<Integer> set30 = new TreeSet<Integer>(DESC);
+            SortedSet<Integer> set40 = new Ex10_SortedSetImp<Integer>(DESC);
+            test(list, set10, params1);
+            test(list, set20, params1);
             if (!SortedSets.isEquals(set10, set20)) {
+                System.out.println("sets are not equals");
+                break;
+            }
+
+            System.out.println("Descending\n----------");
+            test(list, set30, params2);
+            test(list, set40, params2);
+            if (!SortedSets.isEquals(set30, set40)) {
                 System.out.println("sets are not equals");
                 break;
             }
