@@ -16,15 +16,17 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
+import biz.markov.thinking.containers.lib.DemoPrinter;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-/**
+/*
  * Test class for comparing Ex08_SList class
  * with List implementations using reflection
  */
-public class Ex08_ListTest {
+public class Ex08_SListDemo {
     private Object obj;
     private Object itr;
     private Method hasNext;
@@ -32,7 +34,7 @@ public class Ex08_ListTest {
     private Method add;
     private Method remove;
 
-    public Ex08_ListTest(Object obj) throws Exception {
+    public Ex08_SListDemo(Object obj) throws Exception {
         this.obj = obj;
         itr = obj.getClass()
                  .getMethod("listIterator")
@@ -74,9 +76,8 @@ public class Ex08_ListTest {
         return obj.toString();
     }
 
-    public static Object test(Object obj) throws Exception {
-        System.out.format("%-11s ", obj.getClass().getSimpleName() + ":");
-        Ex08_ListTest itr = new Ex08_ListTest(obj);
+    public static void test(Object obj) throws Exception {
+        Ex08_SListDemo itr = new Ex08_SListDemo(obj);
 
         // Adding elements from 9 to 0
         for (int i = 0; i < 10; i++) {
@@ -102,12 +103,12 @@ public class Ex08_ListTest {
             itr.next();
         }
 
-        return obj;
+        DemoPrinter.print(obj, obj.getClass().getSimpleName());
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(test(new Ex08_SList<Integer>()));
-        System.out.println(test(new ArrayList<Integer>()));
-        System.out.println(test(new LinkedList<Integer>()));
+        test(new Ex08_SList<Integer>());
+        test(new ArrayList<Integer>());
+        test(new LinkedList<Integer>());
     }
 }
