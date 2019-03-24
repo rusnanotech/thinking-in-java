@@ -70,25 +70,6 @@ implements SortedSet<E> {
         return list.iterator();
     }
 
-    /* Own list iterator for preventing ConcurrentModificationException */
-    private class Itr implements Iterator<E> {
-
-        @Override
-        public boolean hasNext() {
-            return false;
-        }
-
-        @Override
-        public E next() {
-            return null;
-        }
-
-        @Override
-        public void remove() {
-
-        }
-    }
-
     @Override
     public int size() {
         return list.size();
