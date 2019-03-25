@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 public class Ex04 {
     public static void main(String[] args) {
-        Set<String> words = new TreeSet<String>(new TextFile(args[0], "\\W"));
+        Set<String> words = new TreeSet<String>(new TextFile(args[0], "\\W+"));
         System.out.println(words);
     }
 }
