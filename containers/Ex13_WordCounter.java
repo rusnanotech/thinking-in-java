@@ -18,20 +18,21 @@ import java.util.List;
 
 public class Ex13_WordCounter {
     public static AssociativeArray<String, Integer> count(List<String> words) {
-        Collections.sort(words, String.CASE_INSENSITIVE_ORDER);
+        Collections.sort(words);
 
         AssociativeArray<String, Integer> array
                 = new AssociativeArray<String, Integer>(words.size());
 
-        String uniqWord = "";
-        int counter = 1;
         Iterator<String> itr = words.iterator();
-        if (itr.hasNext()) {
-            uniqWord = itr.next();
+        if (!itr.hasNext()) {
+            return array;
         }
+        String word = itr.next();
+        String uniqWord = word;
+        int counter = 1;
         while (itr.hasNext()) {
-            String word = itr.next();
-            if (uniqWord.equals(word)) {
+            word = itr.next();
+            if (word.equals(uniqWord)) {
                 counter++;
             } else {
                 array.put(uniqWord, counter);
@@ -39,6 +40,7 @@ public class Ex13_WordCounter {
                 counter = 1;
             }
         }
+        array.put(uniqWord, counter);
 
         return array;
     }
