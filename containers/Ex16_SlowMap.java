@@ -1,3 +1,8 @@
+/****************** Exercise 16 *****************
+ * Apply the tests in Maps.java to SlowMap to
+ * verify that it works. Fix anything in SlowMap
+ * that doesn't work correctly.
+ ***********************************************/
 package biz.markov.thinking.containers;
 
 import java.util.*;
@@ -85,6 +90,12 @@ public class Ex16_SlowMap<K, V> extends AbstractMap<K, V> {
         @Override
         public V setValue(V value) {
             return values.set(index, value);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            return (o instanceof Map.Entry)
+                    && (getKey().equals(((Map.Entry) o).getKey()));
         }
     }
 }
