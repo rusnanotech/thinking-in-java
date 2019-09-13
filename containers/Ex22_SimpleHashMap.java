@@ -1,3 +1,7 @@
+/****************** Exercise 22 *****************
+ * Implement the clear() and remove() methods for
+ * SimpleHashMap.
+ ***********************************************/
 package biz.markov.thinking.containers;
 
 import biz.markov.thinking.containers.lib.mindview.MapEntry;
@@ -103,6 +107,8 @@ public class Ex22_SimpleHashMap<K,V> extends AbstractMap<K,V> {
         m.putAll(Countries.capitals());
         System.out.println(m);
         m.remove("UZBEKISTAN");
+        m.remove("GEORGIA");
+        m.remove("LIBERIA");
         System.out.println(m);
         m.clear();
         System.out.println(m);
