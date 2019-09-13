@@ -1,3 +1,8 @@
+/****************** Exercise 20 *****************
+ * Modify SimpleHashMap so it reports
+ * collisions, and test this by adding the same
+ * data set twice so you see collisions.
+ ***********************************************/
 package biz.markov.thinking.containers;
 
 import biz.markov.thinking.containers.lib.mindview.MapEntry;
