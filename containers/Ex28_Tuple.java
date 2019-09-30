@@ -1,5 +1,8 @@
 package biz.markov.thinking.containers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Ex28_Tuple {
 
     public static <A, B> TwoTuple<A, B> tuple(A a, B b) {
@@ -37,9 +40,13 @@ public class Ex28_Tuple {
 
         @Override
         public boolean equals(Object obj) {
-            return obj instanceof TwoTuple
+            return checkInstance(obj)
                     && ((TwoTuple) obj).first.equals(first)
                     && ((TwoTuple) obj).second.equals(second);
+        }
+
+        protected boolean checkInstance(Object obj) {
+            return obj instanceof TwoTuple;
         }
 
         @Override
@@ -65,10 +72,13 @@ public class Ex28_Tuple {
 
         @Override
         public boolean equals(Object obj) {
-            return obj instanceof ThreeTuple
-                    && ((ThreeTuple) obj).first.equals(first)
-                    && ((ThreeTuple) obj).second.equals(second)
-                    && ((ThreeTuple) obj).third.equals(second);
+            return super.equals(obj)
+                    && ((ThreeTuple) obj).third.equals(third);
+        }
+
+        @Override
+        protected boolean checkInstance(Object obj) {
+            return obj instanceof ThreeTuple;
         }
 
         @Override
@@ -85,6 +95,25 @@ public class Ex28_Tuple {
             this.fourth = d;
         }
 
+        @Override
+        public int hashCode() {
+            int result = super.hashCode();
+            result = result * 37 + fourth.hashCode();
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return super.equals(obj)
+                    && ((FourTuple) obj).fourth.equals(fourth);
+        }
+
+        @Override
+        protected boolean checkInstance(Object obj) {
+            return obj instanceof FourTuple;
+        }
+
+        @Override
         public String toString() {
             return "(" + this.first + ", " + this.second + ", " + this.third + ", " + this.fourth + ")";
         }
@@ -98,8 +127,43 @@ public class Ex28_Tuple {
             this.fifth = e;
         }
 
+        @Override
+        public int hashCode() {
+            int result = super.hashCode();
+            result = result * 37 + fifth.hashCode();
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return super.equals(obj)
+                    && ((FiveTuple) obj).fifth.equals(fifth);
+        }
+
+        @Override
+        protected boolean checkInstance(Object obj) {
+            return obj instanceof FiveTuple;
+        }
+
+        @Override
         public String toString() {
             return "(" + this.first + ", " + this.second + ", " + this.third + ", " + this.fourth + ", " + this.fifth + ")";
         }
+    }
+
+
+    public static void main(String[] args) {
+        FiveTuple<String, Long, Integer, Character, String> fiveTuple1
+                = new FiveTuple<String, Long, Integer, Character, String>(
+                        "A", 5L, 3, 'c', new String("94q3g8")
+        );
+        FiveTuple<String, Long, Integer, Character, String> fiveTuple2
+                = new FiveTuple<String, Long, Integer, Character, String>(
+                "A", 5L, 3, 'c', new String("94q3g8")
+        );
+
+        System.out.println(fiveTuple1.equals(fiveTuple1));
+        System.out.println(fiveTuple1.equals(fiveTuple2));
+        System.out.println(fiveTuple2.equals(fiveTuple1));
     }
 }
