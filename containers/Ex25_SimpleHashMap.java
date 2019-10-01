@@ -10,7 +10,6 @@
 package biz.markov.thinking.containers;
 
 import biz.markov.thinking.containers.lib.mindview.MapEntry;
-import net.mindview.util.Countries;
 
 import java.util.*;
 
@@ -21,27 +20,27 @@ public class Ex25_SimpleHashMap<K, V> implements Map<K, V> {
     // You can't have a physical array of generics,
     // but you can upcast to one:
     @SuppressWarnings("unchecked")
-    MapEntry2<K, V>[] buckets =
-            new LinkedList[SIZE];
+    Node<K, V>[] buckets = new Node[SIZE];
 
     @Override
     public V put(K key, V value) {
         V oldValue = null;
-        MapEntry2<K, V> pair = new MapEntry2<K, V>(key, value, null);
+        boolean found = false;
         int index = calculateIndex(key);
+        Node<K, V> node = buckets[index];
 
-        if (buckets[index] != null) {
-            boolean found = false;
-
-            for (MapEntry2<K, V> next = buckets[index];
-                 !next.getKey().equals(key);
-                 next = next.getNext());
-
-            if (!found) {
-                buckets[index].add(pair);
+        while (node != null) {
+            if (node.getKey().equals(key)) {
+                oldValue = node.getValue();
+                node.setValue(value);
+                found = true;
+                break;
             }
-        } else {
-            buckets[index] = pair;
+            node = node.getNext();
+        }
+        if (!found) {
+            Node<K, V> newNode = new Node<K, V>(key, value, buckets[index]);
+            buckets[index] = newNode;
         }
 
         return oldValue;
@@ -49,44 +48,56 @@ public class Ex25_SimpleHashMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(Object key) {
+        V value = null;
         int index = calculateIndex(key);
-        if (buckets[index] == null) return null;
-        for (MapEntry<K, V> iPair : buckets[index])
-            if (iPair.getKey().equals(key))
-                return iPair.getValue();
-        return null;
+        Node<K, V> node = buckets[index];
+
+        while (node != null) {
+            if (node.getKey().equals(key)) {
+                value = node.getValue();
+                break;
+            }
+            node = node.getNext();
+        }
+
+        return value;
     }
 
     @Override
     public Set<Entry<K, V>> entrySet() {
         Set<Entry<K, V>> set = new HashSet<Entry<K, V>>();
-        for (LinkedList<MapEntry<K, V>> bucket : buckets) {
-            if (bucket == null) continue;
-            for (MapEntry<K, V> mpair : bucket)
-                set.add(mpair);
+        for (Node<K, V> node : buckets) {
+            while (node != null) {
+                set.add(node);
+                node = node.getNext();
+            }
         }
         return set;
     }
 
     @Override
     public V remove(Object key) {
-        int index = calculateIndex(key);
-        if (buckets[index] == null) {
-            return null;
-        }
         V value = null;
-        ListIterator<MapEntry<K, V>> it = buckets[index].listIterator();
-        while (it.hasNext()) {
-            MapEntry<K, V> iPair = it.next();
-            if (iPair.getKey().equals(key)) {
-                value = iPair.getValue();
-                it.remove();
-                break;
+        int index = calculateIndex(key);
+        Node<K, V> node = buckets[index];
+        Node<K, V> previousNode = null;
+
+        while (node != null) {
+            if (!node.getKey().equals(key)) {
+                previousNode = node;
+                node = node.getNext();
+                continue;
             }
+
+            if (previousNode == null) {
+                buckets[index] = null;
+            } else {
+                previousNode.setNext(node.getNext());
+            }
+            value = node.getValue();
+            break;
         }
-        if (buckets[index].isEmpty()) {
-            buckets[index] = null;
-        }
+
         return value;
     }
 
@@ -98,9 +109,11 @@ public class Ex25_SimpleHashMap<K, V> implements Map<K, V> {
     @Override
     public int size() {
         int size = 0;
-        for (LinkedList<MapEntry<K, V>> list : buckets) {
-            if (list != null) {
-                size += list.size();
+
+        for (Node node : buckets) {
+            while (node != null) {
+                node = node.getNext();
+                size++;
             }
         }
         return size;
@@ -114,30 +127,29 @@ public class Ex25_SimpleHashMap<K, V> implements Map<K, V> {
     @Override
     public boolean containsKey(Object key) {
         int index = calculateIndex(key);
-        if (buckets[index] == null) {
-            return false;
-        }
-        ListIterator<MapEntry<K, V>> it = buckets[index].listIterator();
-        while (it.hasNext()) {
-            if (it.next().getKey().equals(key)) {
+        Node<K, V> node = buckets[index];
+
+        while (node != null) {
+            if (node.getKey().equals(key)) {
                 return true;
             }
+            node = node.getNext();
         }
+
         return false;
     }
 
     @Override
     public boolean containsValue(Object value) {
-        for (LinkedList<MapEntry<K, V>> list : buckets) {
-            if (list == null) {
-                continue;
-            }
-            for (MapEntry<K, V> e : list) {
-                if (value.equals(e.getValue())) {
+        for (Node<K, V> node : buckets) {
+            while (node != null) {
+                if (node.getValue().equals(value)) {
                     return true;
                 }
+                node = node.getNext();
             }
         }
+
         return false;
     }
 
@@ -151,52 +163,52 @@ public class Ex25_SimpleHashMap<K, V> implements Map<K, V> {
     @Override
     public Set<K> keySet() {
         Set<K> set = new HashSet<K>();
-        for (LinkedList<MapEntry<K, V>> bucket : buckets) {
-            if (bucket == null) continue;
-            set.add(bucket.getFirst().getKey());
+
+        for (Node<K, V> node : buckets) {
+            if (node == null) {
+                continue;
+            }
+            set.add(node.getKey());
         }
+
         return set;
     }
 
     @Override
     public Collection<V> values() {
         Set<V> set = new HashSet<V>();
-        for (LinkedList<MapEntry<K, V>> bucket : buckets) {
-            if (bucket == null) continue;
-            for (MapEntry<K, V> mpair : bucket)
-                set.add(mpair.getValue());
+
+        for (Node<K, V> node : buckets) {
+            while (node != null) {
+                set.add(node.getValue());
+                node = node.getNext();
+            }
         }
+
         return set;
     }
 
     private int calculateIndex(Object key) {
-        return Math.abs(key.hashCode()) % SIZE;
+        return Math.abs(key.hashCode() % SIZE);
     }
 
-    private static class MapEntry2<K, V> extends MapEntry<K, V> {
-        private MapEntry2<K, V> next;
+    private static class Node<K, V> extends MapEntry<K, V> {
+        private Node<K, V> next;
 
-        public MapEntry2(K key, V value, MapEntry2<K, V> next) {
+        public Node(K key, V value, Node<K, V> next) {
             super(key, value);
             this.next = next;
         }
 
-        MapEntry2<K, V> getNext() {
+        public void setNext(Node<K, V> next) {
+            this.next = next;
+        }
+
+        Node<K, V> getNext() {
             return next;
         }
     }
 
     public static void main(String[] args) {
-        Ex24_SimpleHashMap<String, String> m =
-                new Ex24_SimpleHashMap<String, String>();
-
-        m.putAll(Countries.capitals());
-        System.out.println(m);
-        m.remove("UZBEKISTAN");
-        m.remove("GEORGIA");
-        m.remove("LIBERIA");
-        System.out.println(m);
-        m.clear();
-        System.out.println(m);
     }
 }

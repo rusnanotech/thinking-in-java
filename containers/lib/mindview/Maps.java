@@ -3,9 +3,9 @@
 package biz.markov.thinking.containers.lib.mindview;
 
 import java.util.concurrent.*;
-        import java.util.*;
-        import net.mindview.util.*;
-        import static net.mindview.util.Print.*;
+import java.util.*;
+import net.mindview.util.*;
+import static net.mindview.util.Print.*;
 
 public class Maps {
     public static void printKeys(Map<Integer,String> map) {
@@ -13,6 +13,7 @@ public class Maps {
         printnb("Keys: ");
         print(map.keySet()); // Produce a Set of the keys
     }
+
     public static void test(Map<Integer,String> map) {
         print(map.getClass().getSimpleName());
         map.putAll(new CountingMapData(25));
@@ -38,6 +39,15 @@ public class Maps {
         map.keySet().removeAll(map.keySet());
         print("map.isEmpty(): " + map.isEmpty());
     }
+
+    public static <T extends Map<Integer, String>> void test(Class<T> type) {
+        try {
+            test(type.getConstructor().newInstance());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void main(String[] args) {
         test(new HashMap<Integer,String>());
         test(new TreeMap<Integer,String>());

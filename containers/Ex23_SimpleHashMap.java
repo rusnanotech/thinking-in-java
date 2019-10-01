@@ -5,20 +5,16 @@
 package biz.markov.thinking.containers;
 
 import biz.markov.thinking.containers.lib.mindview.MapEntry;
+import biz.markov.thinking.containers.lib.mindview.Maps;
+import biz.markov.thinking.containers.lib.mindview.SlowMap;
 import net.mindview.util.Countries;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Ex23_SimpleHashMap<K,V> implements Map<K,V> {
     // Choose a prime number for the hash table
     // size, to achieve a uniform distribution:
-    static final int SIZE = 997;
+    static final int SIZE = 7;
     // You can't have a physical array of generics,
     // but you can upcast to one:
     @SuppressWarnings("unchecked")
@@ -172,20 +168,10 @@ public class Ex23_SimpleHashMap<K,V> implements Map<K,V> {
     }
 
     private int getBucketIndex(Object key) {
-        return Math.abs(key.hashCode()) % SIZE;
+        return Math.abs(key.hashCode() % SIZE);
     }
 
     public static void main(String[] args) {
-        Ex23_SimpleHashMap<String,String> m =
-                new Ex23_SimpleHashMap<String,String>();
-
-        m.putAll(Countries.capitals());
-        System.out.println(m);
-        m.remove("UZBEKISTAN");
-        m.remove("GEORGIA");
-        m.remove("LIBERIA");
-        System.out.println(m);
-        m.clear();
-        System.out.println(m);
+        Maps.test(Ex23_SimpleHashMap.class);
     }
 }
