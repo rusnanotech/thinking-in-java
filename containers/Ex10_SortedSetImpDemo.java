@@ -5,7 +5,7 @@
 package biz.markov.thinking.containers;
 
 import biz.markov.thinking.containers.lib.DemoPrinter;
-import biz.markov.thinking.containers.lib.Sets;
+import biz.markov.thinking.containers.lib.CollectionUtils;
 
 import java.util.*;
 
@@ -81,7 +81,7 @@ public class Ex10_SortedSetImpDemo {
             SortedSet<Integer> set40 = new Ex10_SortedSetImp<Integer>(DESC);
             test(list, set10, params1);
             test(list, set20, params1);
-            if (!Sets.isEquals(set10, set20)) {
+            if (!CollectionUtils.isEqualsByContentAndOrder(set10, set20)) {
                 System.out.println("sets are not equals");
                 break;
             }
@@ -89,7 +89,7 @@ public class Ex10_SortedSetImpDemo {
             System.out.println("Descending\n----------");
             test(list, set30, params2);
             test(list, set40, params2);
-            if (!Sets.isEquals(set30, set40)) {
+            if (!CollectionUtils.isEqualsByContentAndOrder(set30, set40)) {
                 System.out.println("sets are not equals");
                 break;
             }

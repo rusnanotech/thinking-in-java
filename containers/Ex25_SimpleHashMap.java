@@ -16,7 +16,7 @@ import java.util.*;
 public class Ex25_SimpleHashMap<K, V> implements Map<K, V> {
     // Choose a prime number for the hash table
     // size, to achieve a uniform distribution:
-    static final int SIZE = 997;
+    static final int SIZE = 7;
     // You can't have a physical array of generics,
     // but you can upcast to one:
     @SuppressWarnings("unchecked")
