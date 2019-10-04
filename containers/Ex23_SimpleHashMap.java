@@ -151,7 +151,8 @@ public class Ex23_SimpleHashMap<K,V> implements Map<K,V> {
         Set<K> set= new HashSet<K>();
         for(LinkedList<MapEntry<K,V>> bucket : buckets) {
             if(bucket == null) continue;
-            set.add(bucket.getFirst().getKey());
+            for(MapEntry<K,V> mpair : bucket)
+                set.add(mpair.getKey());
         }
         return set;
     }
