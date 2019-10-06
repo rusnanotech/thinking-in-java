@@ -1,6 +1,16 @@
+/****************** Exercise 28 *****************
+ * Modify net/mindview/util/Tuple.java to make it
+ * a general-purpose class by adding hashCode(),
+ * equals(), and implementing Comparable for each
+ * type of Tuple.
+ ***********************************************/
 package biz.markov.thinking.containers;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 public class Ex28_Tuple {
 
@@ -20,7 +30,7 @@ public class Ex28_Tuple {
         return new FiveTuple<A, B, C, D, E>(a, b, c, d, e);
     }
 
-    public static class TwoTuple<A, B> {
+    public static class TwoTuple<A, B> implements Comparable<TwoTuple<A, B>> {
         public final A first;
         public final B second;
 
@@ -47,14 +57,14 @@ public class Ex28_Tuple {
                 if (this.first != null) {
                     result = this.first.equals(other.first);
                 } else {
-                    result = (this.first == other.first);
+                    result = (other.first == null);
                 }
 
                 if (result) {
                     if (this.second != null) {
                         result = this.second.equals(other.second);
                     } else {
-                        result = (this.second == other.second);
+                        result = (other.second == null);
                     }
                 }
             }
@@ -69,6 +79,32 @@ public class Ex28_Tuple {
         @Override
         public String toString() {
             return "(" + this.first + ", " + this.second + ")";
+        }
+
+        @Override
+        public int compareTo(TwoTuple<A, B> other) {
+            if (!checkInstance(other)) {
+                throw new ClassCastException();
+            }
+
+            @SuppressWarnings("unchecked")
+            Comparable<A> first = (Comparable<A>) this.first;
+
+            @SuppressWarnings("unchecked")
+            Comparable<B> second = (Comparable<B>) this.second;
+
+            if (this.first == null || this.second == null
+                    || other.first == null || other.second == null) {
+                throw new NullPointerException();
+            }
+
+            int result = first.compareTo(other.first);
+
+            if (result == 0) {
+                result = second.compareTo(other.second);
+            }
+
+            return result;
         }
     }
 
@@ -97,7 +133,7 @@ public class Ex28_Tuple {
                 if (this.third != null) {
                     result = this.third.equals(other.third);
                 } else {
-                    result = (this.third == other.third);
+                    result = (other.third == null);
                 }
             }
 
@@ -107,6 +143,26 @@ public class Ex28_Tuple {
         @Override
         public String toString() {
             return "(" + this.first + ", " + this.second + ", " + this.third + ")";
+        }
+
+        @Override
+        public int compareTo(TwoTuple<A, B> other) {
+            ThreeTuple<A, B, C> otherTuple = (ThreeTuple<A, B, C>) other;
+
+            @SuppressWarnings("unchecked")
+            Comparable<C> third = (Comparable<C>) this.third;
+
+            if (this.third == null || otherTuple.third == null) {
+                throw new NullPointerException();
+            }
+
+            int result = super.compareTo(otherTuple);
+
+            if (result == 0) {
+                result = third.compareTo(otherTuple.third);
+            }
+
+            return result;
         }
     }
 
@@ -135,7 +191,7 @@ public class Ex28_Tuple {
                 if (this.fourth != null) {
                     result = this.fourth.equals(other.fourth);
                 } else {
-                    result = (this.fourth == other.fourth);
+                    result = (other.fourth == null);
                 }
             }
 
@@ -145,6 +201,26 @@ public class Ex28_Tuple {
         @Override
         public String toString() {
             return "(" + this.first + ", " + this.second + ", " + this.third + ", " + this.fourth + ")";
+        }
+
+        @Override
+        public int compareTo(TwoTuple<A, B> other) {
+            FourTuple<A, B, C, D> otherTuple = (FourTuple<A, B, C, D>) other;
+
+            @SuppressWarnings("unchecked")
+            Comparable<D> fourth = (Comparable<D>) this.fourth;
+
+            if (this.fourth == null || otherTuple.fourth == null) {
+                throw new NullPointerException();
+            }
+
+            int result = super.compareTo(otherTuple);
+
+            if (result == 0) {
+                result = fourth.compareTo(otherTuple.fourth);
+            }
+
+            return result;
         }
     }
 
@@ -173,7 +249,7 @@ public class Ex28_Tuple {
                 if (this.fifth != null) {
                     result = this.fifth.equals(other.fifth);
                 } else {
-                    result = (this.fifth == other.fifth);
+                    result = (other.fifth == null);
                 }
             }
 
@@ -184,6 +260,26 @@ public class Ex28_Tuple {
         public String toString() {
             return "(" + this.first + ", " + this.second + ", " + this.third + ", "
                     + this.fourth + ", " + this.fifth + ")";
+        }
+
+        @Override
+        public int compareTo(TwoTuple<A, B> other) {
+            FiveTuple<A, B, C, D, E> otherTuple = (FiveTuple<A, B, C, D, E>) other;
+
+            @SuppressWarnings("unchecked")
+            Comparable<E> fifth = (Comparable<E>) this.fifth;
+
+            if (this.fifth == null || otherTuple.fifth == null) {
+                throw new NullPointerException();
+            }
+
+            int result = super.compareTo(otherTuple);
+
+            if (result == 0) {
+                result = fifth.compareTo(otherTuple.fifth);
+            }
+
+            return result;
         }
     }
 
@@ -204,11 +300,65 @@ public class Ex28_Tuple {
                     new FourTuple<String, Integer, Number, Class>("2rf", 555, null, Map.class)
         );
 
-        assert(fiveTuple1.equals(null) == false);
-        assert(fiveTuple1.equals(fiveTuple1) == true);
-        assert(fiveTuple1.equals(fiveTuple2) == true);
-        assert(fiveTuple2.equals(fiveTuple1) == true);
-        assert(fiveTuple1.equals(fiveTuple3) == false);
-        assert(fiveTuple3.equals(fiveTuple1) == false);
+        assert(!fiveTuple1.equals(null));
+        assert(fiveTuple1.equals(fiveTuple1));
+        assert(fiveTuple1.equals(fiveTuple2));
+        assert(fiveTuple2.equals(fiveTuple1));
+        assert(!fiveTuple1.equals(fiveTuple3));
+        assert(!fiveTuple3.equals(fiveTuple1));
+
+        List<FiveTuple<Integer, String, Character, Double, ThreeTuple<Long, String, Float>>> list = Arrays.asList(
+                new FiveTuple<Integer, String, Character, Double, ThreeTuple<Long, String, Float>>(
+                        48, "bcx", 'a', 52.8, new ThreeTuple<Long, String, Float>(50L, "rbs", 0.8F)
+                ),
+                new FiveTuple<Integer, String, Character, Double, ThreeTuple<Long, String, Float>>(
+                        48, "aab", 'x', 10.2, new ThreeTuple<Long, String, Float>(50L, "rbs", 0.8F)
+                ),
+                new FiveTuple<Integer, String, Character, Double, ThreeTuple<Long, String, Float>>(
+                        48, "bcx", 'b', 11.1, new ThreeTuple<Long, String, Float>(50L, "rbs", 0.7F)
+                ),
+                new FiveTuple<Integer, String, Character, Double, ThreeTuple<Long, String, Float>>(
+                        48, "bcx", 'b', 11.1, new ThreeTuple<Long, String, Float>(50L, "rbs", 0.8F)
+                ),
+                new FiveTuple<Integer, String, Character, Double, ThreeTuple<Long, String, Float>>(
+                        3, "bcx", 'a', 10.2, new ThreeTuple<Long, String, Float>(50L, "rbs", 0.8F)
+                )
+        );
+
+        System.out.println(list);
+        System.out.println(new TreeSet<FiveTuple<Integer, String, Character, Double, ThreeTuple<Long, String, Float>>>(list));
+        Collections.sort(list);
+        System.out.println(list);
+
+        FourTuple<Integer, String, Long, Double> fourTuple
+                = new FourTuple<Integer, String, Long, Double>(223, "abc", 96786L, 2243.988);
+        ThreeTuple<Integer, String, Long> threeTuple
+                = new ThreeTuple<Integer, String, Long>(132, "3245", 896L);
+        ThreeTuple<Integer, String, Long> threeTuple2
+                = new ThreeTuple<Integer, String, Long>(234, null, 898L);
+
+        boolean result = false;
+        try {
+            fourTuple.compareTo(threeTuple);
+        } catch (ClassCastException ex) {
+            result = true;
+        }
+        assert (result);
+
+        result = false;
+        try {
+            threeTuple.compareTo(fourTuple);
+        } catch (ClassCastException ex) {
+            result = true;
+        }
+        assert (result);
+
+        result = false;
+        try {
+            threeTuple.compareTo(threeTuple2);
+        } catch (NullPointerException ex) {
+            result = true;
+        }
+        assert (result);
     }
 }
