@@ -89,11 +89,14 @@ public class Ex25_SimpleHashMap<K, V> implements Map<K, V> {
                 continue;
             }
 
-            if (previousNode == null) {
-                buckets[index] = null;
-            } else {
+            if (previousNode != null) {
                 previousNode.setNext(node.getNext());
+            } else if (node.next != null) {
+                buckets[index] = node.getNext();
+            } else {
+                buckets[index] = null;
             }
+
             value = node.getValue();
             break;
         }
@@ -165,10 +168,10 @@ public class Ex25_SimpleHashMap<K, V> implements Map<K, V> {
         Set<K> set = new HashSet<K>();
 
         for (Node<K, V> node : buckets) {
-            if (node == null) {
-                continue;
+            while (node != null) {
+                set.add(node.getKey());
+                node = node.getNext();
             }
-            set.add(node.getKey());
         }
 
         return set;
