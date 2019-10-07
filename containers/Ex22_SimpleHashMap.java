@@ -4,11 +4,10 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
+import biz.markov.thinking.containers.lib.MapTester;
 import biz.markov.thinking.containers.lib.mindview.MapEntry;
-import net.mindview.util.Countries;
 
 import java.util.AbstractMap;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -17,7 +16,7 @@ import java.util.Set;
 public class Ex22_SimpleHashMap<K,V> extends AbstractMap<K,V> {
     // Choose a prime number for the hash table
     // size, to achieve a uniform distribution:
-    static final int SIZE = 997;
+    static final int SIZE = 7;
     // You can't have a physical array of generics,
     // but you can upcast to one:
     @SuppressWarnings("unchecked")
@@ -93,7 +92,11 @@ public class Ex22_SimpleHashMap<K,V> extends AbstractMap<K,V> {
 
     @Override
     public void clear() {
-        Arrays.fill(buckets, null);
+
+        @SuppressWarnings("unchecked")
+        LinkedList<MapEntry<K,V>>[] buckets = new LinkedList[SIZE];
+
+        this.buckets = buckets;
     }
 
     private int getBucketIndex(Object key) {
@@ -101,16 +104,8 @@ public class Ex22_SimpleHashMap<K,V> extends AbstractMap<K,V> {
     }
 
     public static void main(String[] args) {
-        Ex22_SimpleHashMap<String,String> m =
-                new Ex22_SimpleHashMap<String,String>();
+        MapTester tester = new MapTester();
 
-        m.putAll(Countries.capitals());
-        System.out.println(m);
-        m.remove("UZBEKISTAN");
-        m.remove("GEORGIA");
-        m.remove("LIBERIA");
-        System.out.println(m);
-        m.clear();
-        System.out.println(m);
+        tester.test(new Ex22_SimpleHashMap<Integer, String>());
     }
 }

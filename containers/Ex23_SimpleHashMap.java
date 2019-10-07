@@ -4,12 +4,15 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
+import biz.markov.thinking.containers.lib.MapTester;
 import biz.markov.thinking.containers.lib.mindview.MapEntry;
-import biz.markov.thinking.containers.lib.mindview.Maps;
-import biz.markov.thinking.containers.lib.mindview.SlowMap;
-import net.mindview.util.Countries;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Set;
 
 public class Ex23_SimpleHashMap<K,V> implements Map<K,V> {
     // Choose a prime number for the hash table
@@ -90,7 +93,11 @@ public class Ex23_SimpleHashMap<K,V> implements Map<K,V> {
 
     @Override
     public void clear() {
-        Arrays.fill(buckets, null);
+
+        @SuppressWarnings("unchecked")
+        LinkedList<MapEntry<K,V>>[] buckets = new LinkedList[SIZE];
+
+        this.buckets = buckets;
     }
 
     @Override
@@ -106,7 +113,16 @@ public class Ex23_SimpleHashMap<K,V> implements Map<K,V> {
 
     @Override
     public boolean isEmpty() {
-        return size() == 0;
+        boolean result = true;
+
+        for (LinkedList<MapEntry<K, V>> list : buckets) {
+            if (list != null) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
     }
 
     @Override
@@ -173,6 +189,8 @@ public class Ex23_SimpleHashMap<K,V> implements Map<K,V> {
     }
 
     public static void main(String[] args) {
-        Maps.test(Ex23_SimpleHashMap.class);
+        MapTester tester = new MapTester();
+
+        tester.test(new Ex23_SimpleHashMap<Integer, String>());
     }
 }
