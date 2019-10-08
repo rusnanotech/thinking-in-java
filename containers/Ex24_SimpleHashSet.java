@@ -4,13 +4,13 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
-import java.util.*;
+import java.util.AbstractSet;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
-/**
- * Ex24_SimpleHashSet.
- *
- * @author Vasily_Markov
- */
 public class Ex24_SimpleHashSet<E> extends AbstractSet<E> {
     private static final int SIZE = 4;
 
@@ -123,7 +123,10 @@ public class Ex24_SimpleHashSet<E> extends AbstractSet<E> {
 
     @Override
     public void clear() {
-        Arrays.fill(buckets, null);
+        @SuppressWarnings("unchecked")
+        LinkedList<E>[] array = new LinkedList[SIZE];
+
+        this.buckets = array;
     }
 
     private int calculateIndex(Object e) {
