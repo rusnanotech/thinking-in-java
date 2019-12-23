@@ -4,7 +4,7 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
-import biz.markov.thinking.containers.lib.mindview.Maps;
+import biz.markov.thinking.util.tij.Maps;
 
 import java.util.Map;
 import java.util.Properties;

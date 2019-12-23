@@ -5,7 +5,7 @@
  ************************************************/
 package biz.markov.thinking.arrays;
 
-import biz.markov.thinking.arrays.libs.BerylliumSphere;
+import biz.markov.thinking.util.tij.BerylliumSphere;
 import java.util.Arrays;
 
 public class Ex02_ReturningArray {

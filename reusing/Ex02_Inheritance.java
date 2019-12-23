@@ -4,7 +4,8 @@
  * sterilize().
  ***********************************************/
 package biz.markov.thinking.reusing;
-import biz.markov.thinking.reusing.lib.*;
+import biz.markov.thinking.util.tij.Detergent;
+
 import static net.mindview.util.Print.*;
 
 public class Ex02_Inheritance extends Detergent {

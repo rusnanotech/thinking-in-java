@@ -3,7 +3,7 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
-import biz.markov.thinking.containers.lib.mindview.SlowMap;
+import biz.markov.thinking.util.tij.SlowMap;
 import net.mindview.util.TextFile;
 
 import java.util.List;

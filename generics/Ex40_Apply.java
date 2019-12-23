@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import biz.markov.thinking.generics.libs.pets.*;
+import biz.markov.thinking.util.tij.pets.*;
 
 public class Ex40_Apply {
    public static <T, S extends Iterable<? extends T>>

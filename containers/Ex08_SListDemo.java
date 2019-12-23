@@ -16,7 +16,7 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
-import biz.markov.thinking.containers.lib.DemoPrinter;
+import biz.markov.thinking.util.DemoPrinter;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

@@ -6,7 +6,7 @@
  ************************************************/
 package biz.markov.thinking.generics;
 
-import biz.markov.thinking.generics.libs.Holder;
+import biz.markov.thinking.util.tij.Holder;
 
 public class Ex30_Autoboxing {
    public static void main(String[] args) {

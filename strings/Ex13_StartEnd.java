@@ -5,7 +5,7 @@
  *********************************************************/
 package biz.markov.thinking.strings;
 
-import biz.markov.thinking.strings.lib.StartEnd;
+import biz.markov.thinking.util.tij.StartEnd;
 
 public class Ex13_StartEnd {
    public static void main(String[] args) {

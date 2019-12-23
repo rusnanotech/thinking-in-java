@@ -6,7 +6,7 @@
  ************************************************/
 package biz.markov.thinking.arrays;
 
-import biz.markov.thinking.arrays.libs.BerylliumSphere;
+import biz.markov.thinking.util.tij.BerylliumSphere;
 import net.mindview.util.Generated;
 
 import java.lang.reflect.Field;

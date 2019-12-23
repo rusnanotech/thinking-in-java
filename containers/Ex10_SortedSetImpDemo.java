@@ -4,8 +4,8 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
-import biz.markov.thinking.containers.lib.DemoPrinter;
-import biz.markov.thinking.containers.lib.CollectionUtils;
+import biz.markov.thinking.util.DemoPrinter;
+import biz.markov.thinking.util.CollectionUtils;
 
 import java.util.*;
 

@@ -12,9 +12,8 @@
  ***********************************************/
 package biz.markov.thinking.arrays;
 
-import biz.markov.thinking.arrays.libs.RandomDoubleGenerator;
+import biz.markov.thinking.util.tij.RandomDoubleGenerator;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Ex03_Double2D {

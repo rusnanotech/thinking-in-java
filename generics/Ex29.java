@@ -7,7 +7,7 @@
  ************************************************/
 package biz.markov.thinking.generics;
 
-import biz.markov.thinking.generics.libs.Holder;
+import biz.markov.thinking.util.tij.Holder;
 
 import java.util.ArrayList;
 import java.util.Arrays;

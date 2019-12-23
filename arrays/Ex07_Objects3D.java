@@ -3,7 +3,7 @@
  ***********************************************/
 package biz.markov.thinking.arrays;
 
-import biz.markov.thinking.arrays.libs.BerylliumSphere;
+import biz.markov.thinking.util.tij.BerylliumSphere;
 
 public class Ex07_Objects3D {
    public static BerylliumSphere[][][]

@@ -9,7 +9,7 @@ package biz.markov.thinking.arrays;
 
 import java.util.*;
 import net.mindview.util.*;
-import biz.markov.thinking.arrays.libs.CountingGenerator2;
+import biz.markov.thinking.util.tij.CountingGenerator2;
 import static net.mindview.util.Print.*;
 
 public class Ex16_TestArrayGeneration {

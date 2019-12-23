@@ -10,7 +10,7 @@
 package biz.markov.thinking.containers;
 
 import net.mindview.util.TextFile;
-import biz.markov.thinking.containers.lib.mindview.AssociativeArray;
+import biz.markov.thinking.util.tij.AssociativeArray;
 
 import java.util.Collections;
 import java.util.Iterator;

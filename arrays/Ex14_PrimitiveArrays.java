@@ -9,7 +9,7 @@ import net.mindview.util.CountingGenerator;
 import net.mindview.util.Generated;
 
 import java.util.Arrays;
-import static biz.markov.thinking.arrays.libs.Convert.*;
+import static biz.markov.thinking.util.tij.Convert.*;
 
 public class Ex14_PrimitiveArrays {
    static void printArray(Object[] a) {

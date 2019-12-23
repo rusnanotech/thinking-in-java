@@ -9,8 +9,8 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
-import biz.markov.thinking.containers.lib.MapTester;
-import biz.markov.thinking.containers.lib.mindview.MapEntry;
+import biz.markov.thinking.util.MapTester;
+import biz.markov.thinking.util.tij.MapEntry;
 
 import java.util.Collection;
 import java.util.HashSet;

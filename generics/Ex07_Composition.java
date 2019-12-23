@@ -4,7 +4,7 @@
  ************************************************/
 package biz.markov.thinking.generics;
 
-import biz.markov.thinking.generics.libs.Fibonacci;
+import biz.markov.thinking.util.tij.Fibonacci;
 
 import java.util.Iterator;
 

@@ -4,7 +4,7 @@
  ***********************************************/
 package biz.markov.thinking.arrays;
 
-import biz.markov.thinking.arrays.libs.RandomDoubleGenerator;
+import biz.markov.thinking.util.tij.RandomDoubleGenerator;
 import java.util.Random;
 
 public class Ex04_Double3D {

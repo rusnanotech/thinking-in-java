@@ -5,8 +5,8 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
-import biz.markov.thinking.containers.lib.mindview.Maps;
-import biz.markov.thinking.containers.lib.mindview.SlowMap;
+import biz.markov.thinking.util.tij.Maps;
+import biz.markov.thinking.util.tij.SlowMap;
 
 public class Ex16_SlowMap_Demo {
     public static void main(String[] args) {

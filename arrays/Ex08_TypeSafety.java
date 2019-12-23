@@ -17,7 +17,7 @@
  ***********************************************/
 package biz.markov.thinking.arrays;
 
-import biz.markov.thinking.arrays.libs.BerylliumSphere;
+import biz.markov.thinking.util.tij.BerylliumSphere;
 
 public class Ex08_TypeSafety {
    public static void main(String[] args) {

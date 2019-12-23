@@ -7,7 +7,7 @@
  ***********************************************/
 package biz.markov.thinking.containers;
 
-import biz.markov.thinking.containers.lib.mindview.MapEntry;
+import biz.markov.thinking.util.tij.MapEntry;
 import net.mindview.util.Countries;
 
 import java.util.AbstractMap;

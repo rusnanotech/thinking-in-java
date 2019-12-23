@@ -7,7 +7,7 @@
  * derived class.
  ***********************************************/
 package biz.markov.thinking.reusing;
-import biz.markov.thinking.reusing.lib.*;
+import biz.markov.thinking.reusing.pkg.Ex15_Base;
 
 class Ex15_Derived extends Ex15_Base {
     Ex15_Derived() {
