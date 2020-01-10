@@ -15,16 +15,17 @@ import java.util.regex.Pattern;
 
 public class Ex03_DirList {
     public static void main(final String[] args) {
+        File path;
         File[] list;
 
         if (args.length == 0) {
-            File path = new File(".");
+            path = new File(".");
             list = path.listFiles();
         } else if (args.length == 1) {
-            File path = new File(args[0]);
+            path = new File(args[0]);
             list = path.listFiles();
         } else {
-            File path = new File(args[0]);
+            path = new File(args[0]);
             list = path.listFiles(new FilenameFilter() {
                 private Pattern pattern = Pattern.compile(args[1]);
 
@@ -33,6 +34,10 @@ public class Ex03_DirList {
                     return pattern.matcher(name).matches();
                 }
             });
+        }
+
+        if (list == null) {
+            throw new RuntimeException("Error reading from " + path);
         }
 
         Arrays.sort(list, new Comparator<File>() {
