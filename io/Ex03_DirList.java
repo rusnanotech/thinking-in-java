@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.regex.Pattern;
 
 public class Ex03_DirList {
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         File path;
         File[] list;
 
