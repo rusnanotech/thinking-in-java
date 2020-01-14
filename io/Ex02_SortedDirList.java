@@ -62,6 +62,12 @@ public class Ex02_SortedDirList {
     }
 
     public static void main(String[] args) {
+        if (args.length < 2) {
+            System.out.println("Usage:\njava " + Ex02_SortedDirList.class.getSimpleName()
+                    + " <path> <regexp>");
+            return;
+        }
+
         File path = new File(args[0]);
         String regexp = args[1];
         List<String> files = new Ex02_SortedDirList(path).list(regexp);

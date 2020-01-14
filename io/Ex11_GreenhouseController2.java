@@ -74,7 +74,8 @@ public class Ex11_GreenhouseController2 {
 
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.out.println("Usage: java Ex11_GreenhouseController <config file>");
+            System.out.println("Usage:\njava " + Ex11_GreenhouseController2.class.getSimpleName()
+                    + " <config file>");
             return;
         }
 

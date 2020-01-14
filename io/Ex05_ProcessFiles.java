@@ -8,12 +8,9 @@ package biz.markov.thinking.io;
 import net.mindview.util.Directory;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class Ex05_ProcessFiles {
-    public interface Strategy {
-        void process(File file);
-    }
-
     private Strategy strategy;
     private String regexp;
 
@@ -22,9 +19,27 @@ public class Ex05_ProcessFiles {
         this.regexp = regexp;
     }
 
+    // Demonstration of how to use it:
+    public static void main(String[] args) {
+        if (args.length < 1) {
+            System.out.println("Usage:\njava " + Ex05_ProcessFiles.class.getSimpleName()
+                    + " <pattern> {path}");
+            return;
+        }
+
+        new Ex05_ProcessFiles(
+                new Ex05_ProcessFiles.Strategy() {
+                    public void process(File file) {
+                        System.out.println(file);
+                    }
+                }
+                , args[0])
+                .start(Arrays.copyOfRange(args, 1, args.length));
+    }
+
     public void start(String... args) {
         try {
-            if(args.length == 0)
+            if (args.length == 0)
                 processDirectoryTree(new File("."));
             else {
                 for (String arg : args) {
@@ -37,23 +52,18 @@ public class Ex05_ProcessFiles {
                     }
                 }
             }
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void processDirectoryTree(File root) throws IOException {
-        for(File file : Directory.walk(root.getAbsolutePath(), regexp)) {
+        for (File file : Directory.walk(root.getAbsolutePath(), regexp)) {
             strategy.process(file.getCanonicalFile());
         }
     }
 
-    // Demonstration of how to use it:
-    public static void main(String[] args) {
-        new Ex05_ProcessFiles(new Ex05_ProcessFiles.Strategy() {
-            public void process(File file) {
-                System.out.println(file);
-            }
-        }, ".*ab.*java").start(args);
+    public interface Strategy {
+        void process(File file);
     }
 } /* (Execute to see output) *///:~

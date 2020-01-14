@@ -13,9 +13,9 @@ import java.util.Date;
 
 public class Ex06_FilterByDate {
     public static void main(String[] args) throws ParseException {
-        if (args.length < 3) {
-            System.out.println("Missing arguments");
-
+        if (args.length < 2) {
+            System.out.println("Usage:\njava " + Ex06_FilterByDate.class.getSimpleName()
+                    + " <path> <regexp>");
             return;
         }
 

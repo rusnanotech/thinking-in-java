@@ -14,8 +14,8 @@ import java.util.List;
 public class Ex04_Walk {
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.out.println("Missing arguments");
-
+            System.out.println("Usage:\njava " + Ex04_Walk.class.getSimpleName()
+                    + " <path> <regexp>");
             return;
         }
 

@@ -30,19 +30,25 @@ import java.util.regex.Pattern;
 
 public class Ex10_ReadFileToList {
     public static void main(String[] args) throws IOException {
+        if (args.length < 1) {
+            System.out.println("Usage:\njava " + Ex10_ReadFileToList.class.getSimpleName()
+                    + " <source file> {word}");
+            return;
+        }
+
         File file = new File(args[0]);
 
         StringBuilder sb = new StringBuilder(".*");
         if (args.length > 1) {
-            sb.append("(\\b");
+            sb.append("(");
             for (int i = 1; i < args.length; i++) {
                 sb.append(args[i].toUpperCase());
-                sb.append("\\b|\\b");
+                sb.append("|");
             }
-            sb.replace(sb.length() - 3, sb.length(), ").*");
+            sb.replace(sb.length() - 1, sb.length(), ").*");
         }
-        Pattern pattern = Pattern.compile(sb.toString());
 
+        Pattern pattern = Pattern.compile(sb.toString());
         BufferedReader reader = new BufferedReader(new FileReader(file));
         Deque<String> deque = new LinkedList<String>();
         String line;
