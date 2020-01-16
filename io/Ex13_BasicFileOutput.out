@@ -1,0 +1,38 @@
+1: package biz.markov.thinking.io;//: io/BasicFileOutput.java
+2: 
+3: import net.mindview.thinking.io.BufferedInputFile;
+4: 
+5: import java.io.BufferedReader;
+6: import java.io.BufferedWriter;
+7: import java.io.FileWriter;
+8: import java.io.IOException;
+9: import java.io.LineNumberReader;
+10: import java.io.PrintWriter;
+11: import java.io.StringReader;
+12: 
+13: public class Ex13_BasicFileOutput {
+14:     static String file = "Ex13_BasicFileOutput.out";
+15: 
+16:     public static void main(String[] args) throws IOException {
+17:         LineNumberReader in = new LineNumberReader(
+18:                 new BufferedReader(
+19:                         new StringReader(
+20:                                 BufferedInputFile.read("Ex13_BasicFileOutput.java"))));
+21:         PrintWriter out = new PrintWriter(
+22:                 new BufferedWriter(new FileWriter(file)));
+23:         int lineCount = 1;
+24:         String s;
+25: 
+26:         while ((s = in.readLine()) != null) {
+27:             out.println(in.getLineNumber() + ": " + s);
+28:         }
+29: 
+30:         System.out.println(in.getLineNumber());
+31:         System.out.println(in.getLineNumber());
+32: 
+33:         out.close();
+34: 
+35:         // Show the stored file:
+36:         System.out.println(BufferedInputFile.read(file));
+37:     }
+38: } /* (Execute to see output) *///:~
