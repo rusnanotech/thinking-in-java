@@ -7,7 +7,8 @@ package biz.markov.thinking.io;
 
 import net.mindview.util.Directory;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Ex05_ProcessFiles {
