@@ -15,22 +15,45 @@ import java.util.concurrent.TimeUnit;
  * more than once. Do not assume anything about the relative
  * speeds of the producer or consumer.
  *********************************************************/
-public class Ex24_ProducerConsumer {
+public class Ex24_ProducerConsumerManager implements Runnable {
+    private final Consumer consumer;
+    private final Producer producer;
+
+    public Ex24_ProducerConsumerManager(Producer producer, Consumer consumer) {
+        this.producer = producer;
+        this.consumer = consumer;
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (!Thread.interrupted()) {
+                consumer.consume(producer.produce());
+            }
+        } catch (InterruptedException exception) {
+            System.out.println("Interrupted");
+        }
+    }
+
     public static class Producer implements Runnable {
         private int value = 1;
         private final Queue<Integer> buffer = new LinkedList<Integer>();
 
-        public synchronized Integer produce() {
-            try {
-                while (buffer.isEmpty()) {
-                    wait();
-                }
-                return buffer.poll();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+        public synchronized Integer produce() throws InterruptedException {
+            while (buffer.isEmpty()) {
+                wait();
             }
+            return ensureNotNull(buffer.poll());
         }
 
+        private Integer ensureNotNull(Integer value) {
+            if (value == null) {
+                throw new IllegalStateException("Empty producer");
+            }
+            return value;
+        }
+
+        @Override
         public void run() {
             while (!Thread.interrupted()) {
                 synchronized (this) {
@@ -46,24 +69,23 @@ public class Ex24_ProducerConsumer {
     public static class Consumer implements Runnable {
         private final Queue<Integer> buffer = new LinkedList<Integer>();
 
-        public synchronized void consume(Integer value) {
-            if (value == null) {
-                throw new IllegalStateException("Empty producer");
-            }
-            if (buffer.size() > 1) {
-                throw new IllegalStateException("Consumer overflow");
-            }
-
-            try {
+        public void consume(Integer value) throws InterruptedException {
+            ensureBufferSize();
+            synchronized (this) {
                 while (!buffer.isEmpty()) {
                     wait();
                 }
                 buffer.add(value);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
         }
 
+        private void ensureBufferSize() {
+            if (buffer.size() > 1) {
+                throw new IllegalStateException("Consumer overflow");
+            }
+        }
+
+        @Override
         public void run() {
             while (!Thread.interrupted()) {
                 synchronized (this) {
@@ -75,26 +97,17 @@ public class Ex24_ProducerConsumer {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        final Producer producer = new Producer();
-        final Consumer consumer = new Consumer();
+        Producer producer = new Producer();
+        Consumer consumer = new Consumer();
+        Ex24_ProducerConsumerManager manager = new Ex24_ProducerConsumerManager(producer, consumer);
 
         ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.execute(consumer);
         executorService.execute(producer);
-        TimeUnit.SECONDS.sleep(1);
-        executorService.execute(new Runnable() {
-            public void run() {
-                while (!Thread.interrupted()) {
-                    consumer.consume(producer.produce());
-                    if (producer.value % 10000 == 0) {
-                        System.out.println(producer.value);
-                    }
-                }
-            }
-        });
+        executorService.execute(consumer);
+        executorService.execute(manager);
 
-        TimeUnit.SECONDS.sleep(10);
-        System.out.println("Terminating: " + producer.value);
-        System.exit(0);
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("Terminating. Last producer value: " + producer.value);
+        executorService.shutdownNow();
     }
 }
