@@ -5,7 +5,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import static net.mindview.util.Print.print;
-import static net.mindview.util.Print.printnb;
 
 class Meal {
     private final int orderNum;
@@ -38,9 +37,44 @@ class WaitPerson implements Runnable {
                     restaurant.meal = null;
                     restaurant.chef.notifyAll(); // Ready for another
                 }
+                synchronized (this) {
+                    while (restaurant.needsCleanUp)
+                        wait(); // ... for the busboy to clean up
+                }
+                synchronized (restaurant.busBoy) {
+                    restaurant.needsCleanUp = true;
+                    restaurant.busBoy.notifyAll();
+                }
             }
         } catch (InterruptedException e) {
             print("WaitPerson interrupted");
+        }
+    }
+}
+
+class BusBoy implements Runnable {
+    private final Ex26_Restaurant restaurant;
+    private int count = 1;
+
+    public BusBoy(Ex26_Restaurant r) {
+        restaurant = r;
+    }
+
+    public void run() {
+        try {
+            while (!Thread.interrupted()) {
+                synchronized (this) {
+                    while (!restaurant.needsCleanUp)
+                        wait(); // ... for the waiter to delivery a meal
+                }
+                print("Cleaning up! " + count++);
+                synchronized (restaurant.waitPerson) {
+                    restaurant.needsCleanUp = false;
+                    restaurant.waitPerson.notifyAll(); // Ready for another
+                }
+            }
+        } catch (InterruptedException e) {
+            print("Busboy interrupted");
         }
     }
 }
@@ -64,7 +98,7 @@ class Chef implements Runnable {
                     print("Out of food, closing");
                     restaurant.exec.shutdownNow();
                 }
-                printnb("Order up! ");
+                print("Order up!");
                 synchronized (restaurant.waitPerson) {
                     restaurant.meal = new Meal(count);
                     restaurant.waitPerson.notifyAll();
@@ -79,13 +113,16 @@ class Chef implements Runnable {
 
 public class Ex26_Restaurant {
     Meal meal;
+    boolean needsCleanUp = false;
     final ExecutorService exec = Executors.newCachedThreadPool();
     final WaitPerson waitPerson = new WaitPerson(this);
     final Chef chef = new Chef(this);
+    final BusBoy busBoy = new BusBoy(this);
 
     public Ex26_Restaurant() {
         exec.execute(chef);
         exec.execute(waitPerson);
+        exec.execute(busBoy);
     }
 
     public static void main(String[] args) {
