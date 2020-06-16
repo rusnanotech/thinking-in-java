@@ -1,11 +1,21 @@
 package biz.markov.thinking.concurrency;
 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import static net.mindview.util.Print.print;
 
+/********************** Exercise 25 ***********************
+ * In the Chef class in Restaurant.java, return from run()
+ * after calling shutdownNow() and observe the difference
+ * in behavior.
+ ********************** Exercise 26 ***********************
+ * Add a BusBoy class to Restaurant.java. After the meal is
+ * delivered, the WaitPerson should notify the BusBoy to
+ * clean up.
+ *********************************************************/
 class Meal {
     private final int orderNum;
 
@@ -33,6 +43,12 @@ class WaitPerson implements Runnable {
                         wait(); // ... for the chef to produce a meal
                 }
                 print("Waitperson got " + restaurant.meal);
+                TimeUnit.MILLISECONDS.sleep(new Random().nextInt(1000));
+                synchronized (restaurant.busBoy) {
+                    restaurant.needsCleanUp = true;
+                    restaurant.busBoy.meal = restaurant.meal;
+                    restaurant.busBoy.notifyAll();
+                }
                 synchronized (restaurant.chef) {
                     restaurant.meal = null;
                     restaurant.chef.notifyAll(); // Ready for another
@@ -40,10 +56,6 @@ class WaitPerson implements Runnable {
                 synchronized (this) {
                     while (restaurant.needsCleanUp)
                         wait(); // ... for the busboy to clean up
-                }
-                synchronized (restaurant.busBoy) {
-                    restaurant.needsCleanUp = true;
-                    restaurant.busBoy.notifyAll();
                 }
             }
         } catch (InterruptedException e) {
@@ -54,7 +66,7 @@ class WaitPerson implements Runnable {
 
 class BusBoy implements Runnable {
     private final Ex26_Restaurant restaurant;
-    private int count = 1;
+    volatile Meal meal;
 
     public BusBoy(Ex26_Restaurant r) {
         restaurant = r;
@@ -67,7 +79,8 @@ class BusBoy implements Runnable {
                     while (!restaurant.needsCleanUp)
                         wait(); // ... for the waiter to delivery a meal
                 }
-                print("Cleaning up! " + count++);
+                print("Cleaning up " + meal);
+                TimeUnit.MILLISECONDS.sleep(new Random().nextInt(1000));
                 synchronized (restaurant.waitPerson) {
                     restaurant.needsCleanUp = false;
                     restaurant.waitPerson.notifyAll(); // Ready for another
@@ -97,13 +110,14 @@ class Chef implements Runnable {
                 if (++count == 10) {
                     print("Out of food, closing");
                     restaurant.exec.shutdownNow();
+                    return;
                 }
                 print("Order up!");
                 synchronized (restaurant.waitPerson) {
                     restaurant.meal = new Meal(count);
                     restaurant.waitPerson.notifyAll();
                 }
-                TimeUnit.MILLISECONDS.sleep(100);
+                TimeUnit.MILLISECONDS.sleep(new Random().nextInt(1000));
             }
         } catch (InterruptedException e) {
             print("Chef interrupted");
@@ -128,17 +142,4 @@ public class Ex26_Restaurant {
     public static void main(String[] args) {
         new Ex26_Restaurant();
     }
-} /* Output:
-Order up! Waitperson got Meal 1
-Order up! Waitperson got Meal 2
-Order up! Waitperson got Meal 3
-Order up! Waitperson got Meal 4
-Order up! Waitperson got Meal 5
-Order up! Waitperson got Meal 6
-Order up! Waitperson got Meal 7
-Order up! Waitperson got Meal 8
-Order up! Waitperson got Meal 9
-Out of food, closing
-WaitPerson interrupted
-Order up! Chef interrupted
-*///:~
+}
