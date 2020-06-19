@@ -22,7 +22,7 @@ public class Ex20_CachedThreadPool {
 
         public String status() {
             return "#" + id + "(" +
-                    (countDown > 0 ? countDown : "Liftoff!") + "), ";
+                    (countDown > 0 ? countDown  + "), ": "Liftoff!)\n");
         }
 
         public void run() {
